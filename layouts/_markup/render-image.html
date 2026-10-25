@@ -1,0 +1,15 @@
+{{- $src := .Destination -}}
+{{- $src = replace $src "\\ " "%20" -}}
+
+{{- if strings.HasPrefix $src "../../static/" -}}
+  {{- $src = strings.TrimPrefix "../../static/" $src -}}
+  {{- $src = relURL $src -}}
+{{- else if strings.HasPrefix $src "static/" -}}
+  {{- $src = strings.TrimPrefix "static/" $src -}}
+  {{- $src = relURL $src -}}
+{{- end -}}
+
+<img src="{{ $src | safeURL }}"
+  alt="{{ .PlainText }}"
+  {{- with .Title }} title="{{ . }}"{{ end }}
+  loading="lazy">

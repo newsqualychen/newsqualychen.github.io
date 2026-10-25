@@ -1,0 +1,61 @@
+# Hugo generated output
+/public/
+/resources/_gen/
+
+# Hugo build lock
+.hugo_build.lock
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor and temporary files
+*.swp
+*.swo
+*~
+
+# Local backups
+config.backup-*/
+*.backup
+*.before-fixit
+
+# Local Obsidian workspace settings
+content/posts/.obsidian/
+
+# Obsidian trash and local settings
+content/posts/.trash/
+content/posts/.obsidian/
+
+# Local backups and archives
+*.bak
+*.tar.gz
+
+# Unused theme
+/themes/arberia/
+
+# Theme-local generated files and metadata
+/themes/FixIt/.git/
+/themes/**/public/
+/themes/**/.hugo_build.lock
+
+# Local backup files
+.gitmodules.backup
+posts-backup-*.tar.gz
+posts-before-fixit-*.tar.gz
+
+# Obsidian vault settings and workspace
+/.obsidian/
+
+# Local migration backups and helper scripts
+/.gitignore.backup-*
+/.gitmodules.backup
+/config.backup-*/
+/posts-backup-*.tar.gz
+/migrate_hugo.py
+
+# Unused theme and local generated files
+/themes/arberia/
+/themes/public/
+/themes/.DS_Store
+/themes/.hugo_build.lock

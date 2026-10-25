@@ -1,0 +1,70 @@
+title = "code reader"
+baseURL = "https://newsqualychen.github.io/"
+relativeURLs = false
+languageCode = "en-us"
+defaultContentLanguage = "en"
+
+# 中文摘要设置
+hasCJKLanguage = true
+summaryLength = 100
+
+theme = "FixIt"
+
+# 日期格式
+dateformat = "Monday, January 2, 2006"
+
+# 分类法
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+# 页面输出格式
+[outputs]
+  home = ["HTML", "JSON", "RSS", "AMP", "robotsTXT"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+
+# 文章目录
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 5
+  ordered = false
+  tocMinWordCount = 100
+
+# Markdown 渲染设置
+[markup.goldmark.renderer]
+  unsafe = true
+
+# 代码高亮设置
+[markup.highlight]
+  codeFences = true
+  guessSyntax = true
+  hl_Lines = ""
+  lineNoStart = 1
+  lineNos = true
+  lineNumbersInTable = true
+  noClasses = false
+  tabWidth = 4
+
+# 文章链接格式
+[permalinks]
+  posts = "/:title/"
+
+# 压缩生成的网页
+[minify]
+  minifyOutput = true
+
+# 生成 robots.txt
+enableRobotsTXT = true
+
+# 纯文本文件类型
+[mediaTypes."text/plain"]
+  suffixes = ["txt"]
+
+# robots.txt 输出格式
+[outputFormats.robotsTXT]
+  mediaType = "text/plain"
+  baseName = "robots"
+  isPlainText = true
+  noExtension = false
