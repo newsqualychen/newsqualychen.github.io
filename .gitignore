@@ -55,7 +55,3 @@ posts-before-fixit-*.tar.gz
 /migrate_hugo.py
 
 # Unused theme and local generated files
-/themes/arberia/
-/themes/public/
-/themes/.DS_Store
-/themes/.hugo_build.lock
