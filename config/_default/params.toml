@@ -21,11 +21,11 @@ dateformat = "Monday, January 2, 2006"
 # Number of post on pagination list
 paginate = "6"
 
-# Summary length on list post
+# Summary length on list post 
 summaryLength = "225"
 
 # Enable or disable search
-disableSearch = false
+disableSearch = false 
 
 # YouTube Channel ID
 YTChannelID = "UClA8GwWzurVCprEY6OsCvhw"

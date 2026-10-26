@@ -1,7 +1,7 @@
 ---
 title: halo迁移到hugo的折腾记录
-draft: true
-featured: true
+draft: false
+featured: false
 date: 2026-10-24T21:18:15+08:00
 featured_image: Pasted%20image%2020261025012624.png
 featured_image_preview: Pasted%20image%2020261025012624.png
@@ -10,11 +10,12 @@ categories:
 tags:
   - hugo
 ---
-hello world~~ !
+## hello world~~ !
 好久没写文章了，自从上一个域名被墙了后，停了一段时间，话说之前站长用hexo写文章非常舒服，也建好了github图床，typora插入图片就自动上传github了，但是无奈发现墙内访问不了，想分享给其他小伙伴根本不可能。后来想到了一个折中的方法，在本地的nas搭建halo，兰空图床，ddns和用反向代理访问，这样就能够用域名正常访问了。
 <!--more-->
 
 但是...
+
 不出意外的话还是发生意外，没考虑到域名被墙，这就非常难过了，当然用vpn还是可以正常访问，但是这样就没有意义了，与其这样不如直接重新在GitHub搭建吧，反正都需要vpn的。
 
 于是又回到起点，GitHub非常适合静态网页，hexo已经玩过了，于是折腾新项目hugo吧，go语言轻量，响应速度会快很多。

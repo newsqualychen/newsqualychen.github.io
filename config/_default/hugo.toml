@@ -1,4 +1,4 @@
-title = "code reader"
+title = "Code Reader"
 baseURL = "https://newsqualychen.github.io/"
 relativeURLs = false
 languageCode = "en-us"
@@ -68,3 +68,6 @@ enableRobotsTXT = true
   baseName = "robots"
   isPlainText = true
   noExtension = false
+  
+[params.header.title]
+  logo = "/images/logo.png"  
