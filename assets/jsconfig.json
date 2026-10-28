@@ -2,7 +2,7 @@
  "compilerOptions": {
   "paths": {
    "*": [
-    "../themes/FixIt/assets/*"
+    "../themes/solitude/assets/*"
    ]
   }
  }

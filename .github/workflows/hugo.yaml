@@ -45,7 +45,7 @@ jobs:
 
       - name: Build site
         env:
-          HUGO_ENVIRONMENT: production
+          HUGO_ENVIRONMENT: pehtheme
         run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Upload site

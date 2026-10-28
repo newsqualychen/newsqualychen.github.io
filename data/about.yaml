@@ -1,0 +1,62 @@
+title: 关于我
+sections:
+  - type: intro
+    greeting: 你好，欢迎来到我的博客
+    name_prefix: 我是
+    name: Code Reader
+    description: 这里记录 Linux、家庭服务器、开源软件与日常折腾，也分享实践中遇到的问题和解决方法。
+    pursuit:
+      label: 这里有什么
+      lines:
+        - 记录折腾
+        - 分享发现
+      rotating_words:
+        - Linux
+        - 家庭服务器
+        - 开源软件
+
+  - type: values
+    motto:
+      label: 写作原则
+      prefix: 亲自实践
+      content: 如实记录
+    expertise:
+      label: 关注方向
+      prefix: 持续探索
+      specialist: 自托管服务
+      content: 乐于分享
+      level: 实用经验
+
+  - type: interests
+    items:
+      - label: 系统与网络
+        title_lines:
+          - Linux 与
+          - OpenWrt
+        subtitle: 从安装配置到故障排查
+        right_text: 持续折腾
+        background: /img/demo/about/hero-hwei-v2.webp
+        color: "#ffffff"
+      - label: 家庭实验室
+        title_lines:
+          - NAS 与
+          - 自托管服务
+        subtitle: 让常用服务运行在自己手中
+        right_text: 边用边学
+        background: /img/demo/about/hero-aurelion-sol-v2.webp
+        color: "#ffffff"
+      - label: 开源与效率
+        title_lines:
+          - 好用的工具
+          - 值得分享
+        subtitle: 记录真实使用体验与教程
+        right_text: 经验沉淀
+        background: /img/demo/about/music-listening-v2.webp
+        color: "#ffffff"
+
+  - type: story
+    label: 关于这个博客
+    title: 把折腾过程写下来
+    content: >-
+      这个博客主要记录我在 Linux、家庭服务器、网络服务和开源软件上的实践。
+      有些文章是完整教程，有些是排错笔记；希望这些记录能让后来遇到相同问题的人少走一点弯路。

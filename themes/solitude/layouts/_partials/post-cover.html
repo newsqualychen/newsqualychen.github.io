@@ -1,0 +1,23 @@
+{{- $page := .page -}}
+{{- $cover := $page.Params.cover -}}
+{{- if not $cover -}}
+  {{- $source := $page.Params.featured_image_preview | default $page.Params.featured_image -}}
+  {{- with $source -}}
+    {{- if or (strings.HasPrefix . "http://") (strings.HasPrefix . "https://") -}}
+      {{- $cover = . -}}
+    {{- else -}}
+      {{- $resourcePath := replace . "%20" " " -}}
+      {{- $resourcePath = strings.TrimPrefix "./" $resourcePath -}}
+      {{- with $page.Resources.GetMatch $resourcePath -}}
+        {{- $cover = .RelPermalink -}}
+      {{- else -}}
+        {{- with resources.Get $resourcePath -}}
+          {{- $cover = .RelPermalink -}}
+        {{- else -}}
+          {{- $cover = . -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return ($cover | default .fallback) -}}

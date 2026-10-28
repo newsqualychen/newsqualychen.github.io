@@ -1,0 +1,73 @@
+/* Keep article hero text legible over both bright and dark cover images. */
+.post #post-info #post-meta .post-meta-position {
+  display: none;
+}
+
+.post #post-info .post-title {
+  color: #fff;
+  -webkit-text-stroke: 0.55px rgba(18, 20, 26, 0.82);
+  paint-order: stroke fill;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.62);
+}
+
+.post #post-info #post-firstinfo .meta-firstline .post-meta-original,
+.post #post-info #post-firstinfo .meta-firstline span.post-meta-categories,
+.post #post-info #post-meta .meta-secondline > span:not(.post-meta-separator),
+.post #post-info #post-meta .meta-secondline > a.post-meta-pv {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(25, 27, 34, 0.34);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.post #post-info #post-firstinfo .meta-firstline .post-meta-original,
+.post #post-info #post-firstinfo .meta-firstline span.post-meta-categories a.post-meta-categories,
+.post #post-info #post-meta,
+.post #post-info #post-meta a {
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+}
+
+/* The fixed desktop title is already a toTop action; make its purpose explicit. */
+@media screen and (min-width: 900px) {
+  #page-header.nav-fixed:not(.nav-visible) #nav #blog_name {
+    display: none;
+  }
+
+  #page-header.nav-fixed:not(.nav-visible) #nav #page-name-text {
+    font-size: 0;
+  }
+
+  #page-header.nav-fixed:not(.nav-visible) #nav #page-name-text::before {
+    content: "返回顶部";
+    font-size: 0.9rem;
+  }
+}
+
+/* Compact mobile article hero, matching the homepage banner ratio. */
+@media screen and (max-width: 768px) {
+  .post #page-header.post-bg {
+    height: max(13rem, calc(100vw / 1.9));
+    min-height: 0;
+  }
+
+  .post .post-cover-aside {
+    height: 100%;
+  }
+
+  .post #post-info {
+    padding: 3.4rem 0.75rem 1.2rem;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(20, 22, 28, 0.08) 0%,
+      rgba(20, 22, 28, 0.18) 38%,
+      var(--efu-main) 100%
+    );
+  }
+
+  .post #post-info::after {
+    display: none;
+  }
+
+}

@@ -1,0 +1,65 @@
+theme = "solitude"
+locale = "zh-CN"
+defaultContentLanguage = "zh-cn"
+
+[outputs]
+  home = ["HTML", "RSS", "Search", "Links"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  term = ["HTML", "RSS"]
+
+[params.solitude.search]
+  enable = true
+  type = "local"
+
+[params.solitude.highlight]
+  enable = true
+  copy = true
+  line_numbers = true
+  max_height = 360
+  [params.solitude.highlight.themes]
+    light = "github-light"
+    dark = "github-dark"
+
+[params]
+  description = "记录 Linux、家庭服务器、开源软件与日常折腾。"
+
+[params.solitude.site.name]
+  custom = "Code Reader"
+  logo = "/images/logo.png"
+
+[params.solitude.hometop.banner]
+  title = "Code Reader"
+  desc = "记录 Linux、家庭服务器、开源软件与日常折腾。"
+
+[params.solitude.comment]
+  use = "waline"
+
+[params.solitude.waline]
+  serverURL = "https://hugo-waline-puce.vercel.app"
+  pageview = false
+
+[[menus.main]]
+  name = "首页"
+  url = "/"
+  weight = 10
+
+[[menus.main]]
+  name = "归档"
+  url = "/archives/"
+  weight = 20
+
+[[menus.main]]
+  name = "分类"
+  url = "/categories/"
+  weight = 30
+
+[[menus.main]]
+  name = "标签"
+  url = "/tags/"
+  weight = 40
+
+[[menus.main]]
+  name = "关于"
+  url = "/about/"
+  weight = 50
