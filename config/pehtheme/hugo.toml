@@ -32,6 +32,10 @@ defaultContentLanguage = "zh-cn"
   title = "Code Reader"
   desc = "记录 Linux、家庭服务器、开源软件与日常折腾。"
 
+[params.solitude.post.covercolor]
+  enable = true
+  mode = "local"
+
 [params.solitude.comment]
   use = "waline"
   count = true
@@ -49,6 +53,7 @@ defaultContentLanguage = "zh-cn"
 [params.solitude.waline]
   serverURL = "https://hugo-waline-puce.vercel.app"
   pageview = false
+  dark = 'html[data-theme="dark"]'
 
 [params.solitude.aside.home]
   noSticky = "about,newest_comment"

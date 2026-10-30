@@ -3,6 +3,27 @@
   display: none;
 }
 
+/* Match Waline's form, cards, text, and controls to Solitude's active theme. */
+#waline-wrap,
+#waline-wrap .wl-panel {
+  --waline-theme-color: var(--efu-main);
+  --waline-active-color: var(--efu-main);
+  --waline-white: var(--efu-card-bg);
+  --waline-light-grey: var(--efu-secondtext);
+  --waline-dark-grey: var(--efu-fontcolor);
+  --waline-color: var(--efu-fontcolor);
+  --waline-bg-color: var(--efu-card-bg);
+  --waline-bg-color-light: var(--efu-secondbg);
+  --waline-bg-color-hover: var(--efu-background);
+  --waline-border-color: var(--efu-card-border);
+  --waline-disable-bg-color: var(--efu-secondbg);
+  --waline-disable-color: var(--efu-secondtext);
+  --waline-code-bg-color: var(--efu-background);
+  --waline-bq-color: var(--efu-secondbg);
+  --waline-info-bg-color: var(--efu-secondbg);
+  --waline-info-color: var(--efu-secondtext);
+}
+
 .post #post-info .post-title {
   color: #fff;
   -webkit-text-stroke: 0.55px rgba(18, 20, 26, 0.82);
