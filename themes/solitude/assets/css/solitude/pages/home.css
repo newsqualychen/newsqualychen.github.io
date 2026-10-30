@@ -330,7 +330,7 @@
   }
   .home-center-title a {
     font-size: 18px;
-    pointer-events: none;
+    pointer-events: auto;
   }
   .home-center-title-tag {
     display: none;

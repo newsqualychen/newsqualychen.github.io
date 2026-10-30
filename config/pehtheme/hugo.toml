@@ -34,10 +34,36 @@ defaultContentLanguage = "zh-cn"
 
 [params.solitude.comment]
   use = "waline"
+  count = true
+  sidebar = true
+
+[params.solitude.comment.newest_comment]
+  enable = true
+  limit = 5
+  storage = 0.5
+
+[params.solitude.console.recentComment]
+  enable = true
+  storage = 0.2
 
 [params.solitude.waline]
   serverURL = "https://hugo-waline-puce.vercel.app"
   pageview = false
+
+[params.solitude.aside.home]
+  noSticky = "about,newest_comment"
+  Sticky = "allInfo"
+
+[params.solitude.aside.post]
+  noSticky = "about"
+  Sticky = "newestPost,newest_comment,allInfo"
+
+[params.solitude.aside.page]
+  noSticky = "about,newest_comment"
+  Sticky = "newestPost,allInfo"
+
+[params.solitude.nav]
+  group = {}
 
 [[menus.main]]
   name = "首页"

@@ -431,21 +431,38 @@ const initHomeCenter = () => {
     item.addEventListener("mouseenter", () => select(index));
     item.addEventListener("focusin", () => select(index));
   });
+  let pointerType = "";
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchMoved = false;
+  banner.addEventListener("pointerdown", (event) => {
+    pointerType = event.pointerType;
+    touchStartX = event.clientX;
+    touchStartY = event.clientY;
+    touchMoved = false;
+  });
+  banner.addEventListener("pointermove", (event) => {
+    if (
+      pointerType === "touch" &&
+      (Math.abs(event.clientX - touchStartX) > 10 ||
+        Math.abs(event.clientY - touchStartY) > 10)
+    ) {
+      touchMoved = true;
+    }
+  });
+  banner.addEventListener("pointercancel", () => {
+    touchMoved = true;
+  });
   banners.forEach((item, index) => {
-    let pointerType = "";
-    item.addEventListener(
-      "pointerdown",
-      (event) => (pointerType = event.pointerType),
-      true
-    );
     item.addEventListener("click", (event) => {
-      if (pointerType === "touch" && window.innerWidth <= 768) {
-        event.preventDefault();
-        select(index);
-      } else {
-        navigate(item.dataset.link, event);
+      event.preventDefault();
+      if (pointerType === "touch" && touchMoved) {
+        pointerType = "";
+        touchMoved = false;
+        return;
       }
       pointerType = "";
+      navigate(item.dataset.link, event);
     });
     item.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {

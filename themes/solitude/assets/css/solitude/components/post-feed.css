@@ -395,14 +395,14 @@
   #sidebar #sidebar-menus .back-menu-list-groups .back-menu-list .back-menu-item:hover {
     background: var(--efu-lighttext);
   }
-  #sidebar #sidebar-menus .menus_items li .site-page {
+  #sidebar #sidebar-menus .menus_items .menus_item > .site-page {
     font-weight: 400;
   }
-  #sidebar #sidebar-menus .menus_items li .site-page:hover {
+  #sidebar #sidebar-menus .menus_items .menus_item > .site-page:hover {
     background: var(--efu-main) !important;
     color: var(--efu-white);
   }
-  #sidebar #sidebar-menus .menus_items li .site-page span:hover {
+  #sidebar #sidebar-menus .menus_items .menus_item > .site-page span:hover {
     color: var(--efu-white);
   }
 }

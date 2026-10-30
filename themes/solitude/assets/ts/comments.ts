@@ -11,6 +11,19 @@ interface ValineRecord {
   updatedAt?: string;
 }
 
+interface WalineRecord {
+  objectId?: string;
+  nick?: string;
+  mail?: string;
+  comment?: string;
+  url?: string;
+  avatar?: string;
+  insertedAt?: string;
+  updatedAt?: string;
+  time?: number;
+  children?: WalineRecord[];
+}
+
 interface NormalizedComment {
   id: string;
   nick: string;
@@ -109,6 +122,95 @@ const requestValine = async (parameters: Record<string, string | number>) => {
   });
   if (!response.ok) throw new Error(`Valine request failed with ${response.status}`);
   return response.json();
+};
+
+const requestWaline = async (parameters: Record<string, string | number>) => {
+  const serverURL = String(Solitude.config.waline?.serverURL || "").replace(/\/$/, "");
+  if (!serverURL) throw new Error("Waline serverURL is missing");
+  const endpoint = new URL(`${serverURL}/api/comment`);
+  Object.entries(parameters).forEach(([key, value]) =>
+    endpoint.searchParams.set(key, String(value))
+  );
+  const response = await fetch(endpoint);
+  if (!response.ok) throw new Error(`Waline request failed with ${response.status}`);
+  const result = await response.json();
+  if (result.errno) throw new Error(result.errmsg || "Waline request failed");
+  return result.data;
+};
+
+const normalizeWalinePath = (path: string) => {
+  try {
+    return decodeURI(path);
+  } catch {
+    return path;
+  }
+};
+
+const normalizeWalineRecords = (records: WalineRecord[]) => {
+  const routes = runtimeConfig().routes || {};
+  return records.flatMap((record) => {
+    const recordPath = String(record.url || "");
+    const matchingRoute = Object.keys(routes).find(
+      (path) => normalizeWalinePath(path) === normalizeWalinePath(recordPath)
+    );
+    const url = matchingRoute || recordPath;
+    const comment = matchingRoute
+      ? [{
+          id: String(record.objectId || `${url}-${record.insertedAt || ""}`),
+          nick: String(record.nick || "").trim() || commentText("anonymous", "Anonymous"),
+          participantKey: record.mail
+            ? `mail:${stableSignature(record.mail.trim().toLowerCase())}`
+            : `nick:${String(record.nick || "").trim().toLocaleLowerCase()}`,
+          content: summarize(record.comment),
+          url,
+          title: routes[url],
+          avatar: String(record.avatar || runtimeConfig().default_avatar || "/img/default_avatar.avif"),
+          date: String(
+            record.insertedAt ||
+              record.updatedAt ||
+              (record.time ? new Date(record.time).toISOString() : "")
+          ),
+        } satisfies NormalizedComment]
+      : [];
+    return [...comment, ...normalizeWalineRecords(record.children || [])];
+  });
+};
+
+const walineRecords = (data: any): WalineRecord[] => {
+  if (Array.isArray(data)) return data;
+  if (Array.isArray(data?.data)) return data.data;
+  return [];
+};
+
+const fetchWalineRecentComments = async () => {
+  const data = await requestWaline({ type: "recent", count: 50 });
+  return normalizeWalineRecords(walineRecords(data)).sort(
+    (left, right) => Date.parse(right.date) - Date.parse(left.date)
+  );
+};
+
+const fetchWalinePostCardComments = async (paths: string[]) => {
+  const availableRoutes = runtimeConfig().routes || {};
+  const allowedPaths = [...new Set(paths)].filter((path) =>
+    Boolean(availableRoutes[path])
+  );
+  const results = await Promise.all(
+    allowedPaths.map(async (path) => {
+      const data = await requestWaline({
+        path: normalizeWalinePath(path),
+        page: 1,
+        pageSize: 100,
+        sortBy: "insertedAt_desc",
+      });
+      return normalizeWalineRecords(walineRecords(data));
+    })
+  );
+  return results.flat();
+};
+
+const fetchWalineCount = async () => {
+  const data = await requestWaline({ type: "count", url: "" });
+  return Number(data?.count ?? data ?? 0);
 };
 
 const loadMd5 = () => {
@@ -213,9 +315,9 @@ const routeCacheSignature = () => {
 };
 
 const aggregateCacheKey = () =>
-  `valine-hugo-comments:v${aggregateCacheVersion}:${location.host}:${routeCacheSignature()}`;
+  `${providers()[0] || "comments"}-hugo-comments:v${aggregateCacheVersion}:${location.host}:${routeCacheSignature()}`;
 const countCacheKey = () =>
-  `valine-hugo-count:v${aggregateCacheVersion}:${location.host}:${routeCacheSignature()}`;
+  `${providers()[0] || "comments"}-hugo-count:v${aggregateCacheVersion}:${location.host}:${routeCacheSignature()}`;
 const postCardCacheKey = (signature: string) =>
   `valine-hugo-post-card:v${aggregateCacheVersion}:${location.host}:${signature}`;
 
@@ -229,6 +331,9 @@ const fetchAggregateComments = () => {
     return aggregateRequest;
   }
   aggregateRequest = (async () => {
+    if (providers().includes("waline")) {
+      return (await fetchWalineRecentComments()).slice(0, aggregateLimit());
+    }
     if (!routes.length) return [];
     const limit = aggregateLimit();
     const responses = await Promise.all(
@@ -262,6 +367,7 @@ const fetchAggregateComments = () => {
 };
 
 const fetchPostCardComments = (paths: string[]) => {
+  if (providers().includes("waline")) return fetchWalinePostCardComments(paths);
   const availableRoutes = runtimeConfig().routes || {};
   const allowedPaths = [...new Set(paths)]
     .filter((path) => Boolean(availableRoutes[path]))
@@ -322,6 +428,13 @@ const fetchPostCardComments = (paths: string[]) => {
 
 const fetchAggregateCount = () => {
   if (countRequest) return countRequest;
+  if (providers().includes("waline")) {
+    countRequest = fetchWalineCount().catch((error) => {
+      countRequest = null;
+      throw error;
+    });
+    return countRequest;
+  }
   const cached = Solitude.saveToLocal.get<number>(countCacheKey());
   if (typeof cached === "number") {
     countRequest = Promise.resolve(cached);
@@ -355,6 +468,15 @@ const fetchAggregateCount = () => {
 };
 
 const fetchPageComments = async (path: string) => {
+  if (providers().includes("waline")) {
+    const data = await requestWaline({
+      path: normalizeWalinePath(path),
+      page: 1,
+      pageSize: 100,
+      sortBy: "insertedAt_desc",
+    });
+    return normalizeWalineRecords(walineRecords(data));
+  }
   const response = await requestValine({
     where: JSON.stringify({ url: path }),
     order: "-createdAt",
@@ -788,6 +910,11 @@ const initializeOtherProviders = async (enabled: CommentProvider[]) => {
 const initializeComments = () => {
   const enabled = providers();
   if (!enabled.length) return;
+  if (enabled.includes("waline")) {
+    void renderPostCardParticipants();
+    void renderAggregateSurfaces();
+    void renderAggregateCount();
+  }
   if (enabled.includes("valine")) {
     if (valineReady()) {
       void renderPostCardParticipants();

@@ -32,21 +32,8 @@ jobs:
           hugo-version: '0.167.0'
           extended: true
 
-      - name: Install Dart Sass
-        env:
-          DART_SASS_VERSION: 1.105.1
-        run: |
-          mkdir -p "$HOME/.local"
-          curl -fsSL -o "$RUNNER_TEMP/dart-sass.tar.gz" \
-            "https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz"
-          tar -xzf "$RUNNER_TEMP/dart-sass.tar.gz" -C "$HOME/.local"
-          echo "$HOME/.local/dart-sass" >> "$GITHUB_PATH"
-          "$HOME/.local/dart-sass/sass" --version
-
       - name: Build site
-        env:
-          HUGO_ENVIRONMENT: pehtheme
-        run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: hugo --environment pehtheme --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
