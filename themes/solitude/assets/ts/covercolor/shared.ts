@@ -68,6 +68,11 @@ export const applyThemeColor = (value) => {
     : color;
 
   const root = document.documentElement;
+  root.style.setProperty("--efu-theme", adjusted);
+  root.style.setProperty("--efu-theme-op", `${adjusted}23`);
+  root.style.setProperty("--efu-theme-op-deep", `${adjusted}dd`);
+  root.style.setProperty("--efu-theme-op-light", `${adjusted}0d`);
+  root.style.setProperty("--efu-theme-none", `${adjusted}00`);
   root.style.setProperty("--efu-main", adjusted);
   root.style.setProperty("--efu-main-op", `${adjusted}23`);
   root.style.setProperty("--efu-main-op-deep", `${adjusted}dd`);
@@ -77,6 +82,13 @@ export const applyThemeColor = (value) => {
 
 export const applyDefaultColor = () => {
   const root = document.documentElement;
+  [
+    "--efu-theme",
+    "--efu-theme-op",
+    "--efu-theme-op-deep",
+    "--efu-theme-op-light",
+    "--efu-theme-none",
+  ].forEach((property) => root.style.removeProperty(property));
   root.style.setProperty("--efu-main", "var(--efu-theme)");
   root.style.setProperty("--efu-main-op", "var(--efu-theme-op)");
   root.style.setProperty("--efu-main-op-deep", "var(--efu-theme-op-deep)");

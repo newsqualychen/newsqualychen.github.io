@@ -53,7 +53,6 @@ mkdir -p ~/docker/ncm-api
 cd ~/docker/ncm-api
 ```
 
----
 
 ## 2. 创建 compose
 
@@ -80,7 +79,6 @@ services:
 
 保存。
 
----
 
 ## 3. 启动
 
@@ -124,15 +122,11 @@ curl http://localhost:2000/login/qr/key
 
 说明正常。
 
----
-
 ## 2. 测试搜索
 
 ```
 curl "http://localhost:2000/search?keywords=%E5%91%A8%E6%9D%B0%E4%BC%A6"
 ```
-
----
 
 ## 3. 测试播放地址
 
@@ -154,8 +148,6 @@ curl \
 
 ✅ ncm-api 完成
 
----
-
 # 三、安装 ncm-adapter 缓存代理
 
 作用：
@@ -166,16 +158,12 @@ curl \
 * 播放第一次慢
 * 重复请求网易云
 
----
-
 ## 1. 创建目录
 
 ```
 mkdir -p ~/docker/ncm-adapter
 cd ~/docker/ncm-adapter
 ```
-
----
 
 # 四、创建 Dockerfile
 
@@ -216,8 +204,6 @@ CMD [
 这里安装的是容器内部 Python 包。
 
 不会影响 Ubuntu。
-
----
 
 # 五、创建 app.py
 
@@ -432,8 +418,6 @@ async def proxy(path:str,request:Request):
     )
 ```
 
----
-
 # 六、创建 compose
 
 ```
@@ -477,8 +461,6 @@ networks:
     external: true
 ```
 
----
-
 # 七、启动 adapter
 
 ```
@@ -503,16 +485,12 @@ curl http://localhost:2001/login/qr/key
 
 应该正常。
 
----
-
 ## 2. 搜索
 
 ```
 curl \
 "http://localhost:2001/search?keywords=%E5%91%A8%E6%9D%B0%E4%BC%A6"
 ```
-
----
 
 ## 3. 播放
 
@@ -554,8 +532,6 @@ docker logs ncm-adapter
 CACHE HIT
 ```
 
----
-
 # 九、Music Assistant 添加
 
 MA：
@@ -596,8 +572,6 @@ http://localhost:2001
 
 二维码登录。
 
----
-
 # 十、以后维护
 
 ## 查看日志
@@ -614,8 +588,6 @@ adapter:
 docker logs -f ncm-adapter
 ```
 
----
-
 ## 更新 ncm-api
 
 ```
@@ -625,8 +597,6 @@ docker compose pull
 
 docker compose up -d
 ```
-
----
 
 ## 更新 adapter
 

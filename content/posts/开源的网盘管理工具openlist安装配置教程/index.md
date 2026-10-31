@@ -13,6 +13,7 @@ tags:
   - arai2
   - kkFileView
 ---
+
 ## openlist可以做什么？
 openlist前身是alist，是一个网盘管理工具，可以接入百度网盘，阿里云盘，夸克网盘等离线下载，支持arai2,qbittorrent等工具。alist闭源，推荐大家安装openlist取代alist。
 
