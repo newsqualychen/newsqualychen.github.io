@@ -5,7 +5,6 @@ featured: false
 date: 2026-10-31T02:17:12+08:00
 featured_image: Pasted%20image%2020261031093656.png
 featured_image_preview: Pasted%20image%2020261031093656.png
-summary: ""
 categories:
   - docker
 tags:
