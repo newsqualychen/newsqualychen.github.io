@@ -76,8 +76,8 @@ params:
           img: /img/logo.png
           emoji:
           sticker: 
-        description: A Hugo theme for expressive personal sites.
-        content: Write, collect, and share with Solitude.
+        description: 喜欢折腾各种好玩的事物，爱好广泛喜欢电子产品，宠物，植物.
+        content: 分享经验，共享乐趣，看天气和心情更新.
         state:
           morning: Good morning
           noon: Good noon

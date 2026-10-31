@@ -22,7 +22,7 @@ defaultContentLanguage = "zh-cn"
     dark = "github-dark"
 
 [params]
-  description = "记录 Linux、家庭服务器、开源软件与日常折腾。"
+  description = "网站 、Linux、服务器、开源软件与日常折腾。"
 
 [params.solitude.site.name]
   custom = "Code Reader"
@@ -30,7 +30,7 @@ defaultContentLanguage = "zh-cn"
 
 [params.solitude.hometop.banner]
   title = "Code Reader"
-  desc = "记录 Linux、家庭服务器、开源软件与日常折腾。"
+  desc = "网站 、Linux、服务器、开源软件与日常折腾。"
 
 [params.solitude.post.covercolor]
   enable = true

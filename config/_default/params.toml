@@ -13,7 +13,7 @@ description = "Arberia Theme for Hugo Static Site Generator. Insert here general
 keywords = "Insert keywords"
 [author]
 name = "squaly"
-author_resume = "记录 Linux、家庭服务器、开源软件与日常折腾。"
+author_resume = "网站、Linux、家庭服务器、开源软件与日常折腾。"
 
 # Date format. See https://gohugo.io/functions/format/
 dateformat = "Monday, January 2, 2006"
