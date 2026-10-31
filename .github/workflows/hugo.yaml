@@ -30,7 +30,6 @@ jobs:
         uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: '0.167.0'
-          extended: true
 
       - name: Build site
         run: hugo --environment pehtheme --minify --baseURL "${{ steps.pages.outputs.base_url }}/"

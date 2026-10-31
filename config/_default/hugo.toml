@@ -8,7 +8,7 @@ defaultContentLanguage = "en"
 hasCJKLanguage = true
 summaryLength = 100
 
-theme = "FixIt"
+theme = "solitude"
 
 # 日期格式
 dateformat = "Monday, January 2, 2006"
