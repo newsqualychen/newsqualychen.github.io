@@ -52,7 +52,7 @@ sudo dnf install openssh-clients git
 建议为 GitHub 单独创建一组 SSH 密钥，使用 Ed25519 算法：
 
 ```
-ssh-keygen -t ed25519 -C "你的GitHub邮箱" -f ~/.ssh/id_ed25519_github_fedora
+ssh-keygen -t ed25519 -C "你的GitHub邮箱" -f ~/.ssh/你的私钥文件
 ```
 
 请将 `你的GitHub邮箱` 替换成自己使用的 GitHub 邮箱。
@@ -66,10 +66,10 @@ ssh-keygen -t ed25519 -C "你的GitHub邮箱" -f ~/.ssh/id_ed25519_github_fedora
 
 生成完成后，会得到两个文件：
 
-|文件|作用|
-|---|---|
-|`~/.ssh/id_ed25519_github_fedora`|私钥，只保存在本地|
-|`~/.ssh/id_ed25519_github_fedora.pub`|公钥，可以添加到 GitHub|
+| 文件                  | 作用              |
+| ------------------- | --------------- |
+| `~/.ssh/你的私钥文件      | 私钥，只保存在本地       |
+| `~/.ssh/你的私钥文件.pub` | 公钥，可以添加到 GitHub |
 
 **注意：不要上传、发送或公开没有** `**.pub**` **后缀的私钥文件。**
 
@@ -78,7 +78,7 @@ ssh-keygen -t ed25519 -C "你的GitHub邮箱" -f ~/.ssh/id_ed25519_github_fedora
 执行：
 
 ```
-ls -l ~/.ssh/id_ed25519_github_fedora*
+ls -l ~/.ssh/你的私钥文件*
 ```
 
 正常情况下会看到公钥和私钥两个文件。
@@ -90,7 +90,7 @@ ls -l ~/.ssh/id_ed25519_github_fedora*
 在 Fedora 终端执行：
 
 ```
-cat ~/.ssh/id_ed25519_github_fedora.pub
+cat ~/.ssh/你的私钥文件.pub
 ```
 
 终端会显示一整行以 `ssh-ed25519` 开头的内容。
@@ -127,7 +127,7 @@ cat ~/.ssh/id_ed25519_github_fedora.pub
 在 Fedora 终端运行：
 
 ```
-ssh -T -i ~/.ssh/id_ed25519_github_fedora git@github.com
+ssh -T -i ~/.ssh/你的私钥文件 git@github.com
 ```
 
 首次连接时，可能出现类似下面的提示：
@@ -226,7 +226,7 @@ nano ~/.ssh/config
 Host github.com
     HostName github.com
     User git
-    IdentityFile ~/.ssh/id_ed25519_github_fedora
+    IdentityFile ~/.ssh/你的私钥文件
     IdentitiesOnly yes
 ```
 
@@ -245,8 +245,8 @@ Host github.com
 
 ```
 chmod 600 ~/.ssh/config
-chmod 600 ~/.ssh/id_ed25519_github_fedora
-chmod 644 ~/.ssh/id_ed25519_github_fedora.pub
+chmod 600 ~/.ssh/你的私钥文件
+chmod 644 ~/.ssh/你的私钥文件.pub
 ```
 
 ### 3. 再次测试
@@ -262,7 +262,7 @@ ssh -T git@github.com
 进入仓库目录：
 
 ```
-cd ~/hugo-migration/newsqualychen.github.io
+cd ~/hugo-migration/用户名.github.io
 ```
 
 检查当前分支：
@@ -307,7 +307,7 @@ git push
 先执行：
 
 ```
-ssh -vT -i ~/.ssh/id_ed25519_github_fedora git@github.com
+ssh -vT -i ~/.ssh/你的私钥文件 git@github.com
 ```
 
 观察调试输出中是否尝试使用了正确的密钥。
@@ -315,7 +315,7 @@ ssh -vT -i ~/.ssh/id_ed25519_github_fedora git@github.com
 同时确认公钥内容：
 
 ```
-cat ~/.ssh/id_ed25519_github_fedora.pub
+cat ~/.ssh/你的私钥文件.pub
 ```
 
 与 GitHub SSH Keys 页面中的密钥一致。

@@ -1,16 +1,16 @@
 ---
-title: 安装解锁网易云（缓存代理版）+ Music Assistant」
+title: 安装解锁网易云（缓存代理版）+ Music Assistant
 featured: true
 id: 01a0f946-9523-73ff-af24-e9c6c553ed26
 date: 2026-10-02 05:02:36
 auther: squaly
-featured_image: "./featured-image.jpg"
-summary: 目标： MA 使用网易云音乐源 支持扫码登录 支持搜索 支持播放解灰 播放 URL 缓存，加快第二次播放 不污染 Ubuntu 系统 最终结构： Music Assistant        |        |        ↓ncm-adapter 2001(缓存代理层)     
+featured_image: ./featured-image.jpg
+summary: 目标： MA 使用网易云音乐源 支持扫码登录 支持搜索 支持播放解灰 播放 URL 缓存，加快第二次播放 不污染 Ubuntu 系统 最终结构： Music Assistant        |        |        ↓ncm-adapter 2001(缓存代理层)
 permalink: /archives/XcU7szXb
 categories:
- - default
-tags: 
- - navidrome
+  - default
+tags:
+  - navidrome
 ---
 
 
@@ -520,7 +520,7 @@ curl \
 
 ```
 time curl \
-"http://10.10.10.226:2001/song/url/v1?id=400164559&level=exhigh"
+"http://localhost:2001/song/url/v1?id=400164559&level=exhigh"
 ```
 
 可能：
@@ -571,7 +571,7 @@ NetEase Cloud Music
 地址：
 
 ```
-http://10.10.10.226:2001
+http://localhost:2001
 ```
 
 不要：
@@ -589,7 +589,7 @@ http://10.10.10.226:2001
 只填：
 
 ```
-http://10.10.10.226:2001
+http://localhost:2001
 ```
 
 然后：
