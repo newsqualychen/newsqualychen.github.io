@@ -12,7 +12,6 @@ tags:
   - Waline
 featured_image: Pasted image 20261031214724.png
 featured_image_preview: Pasted image 20261031214724.png
-home: "true"
 ---
 这篇文章记录本站从旧主题切换到 Solitude 后的配置和定制点。以后升级主题或调整样式时，可以先从这里找到配置入口和相关文件。
 
