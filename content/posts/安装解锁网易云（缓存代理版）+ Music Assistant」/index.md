@@ -8,7 +8,8 @@ featured_image: ./featured-image.jpg
 summary: 目标： MA 使用网易云音乐源 支持扫码登录 支持搜索 支持播放解灰 播放 URL 缓存，加快第二次播放 不污染 Ubuntu 系统 最终结构： Music Assistant        |        |        ↓ncm-adapter 2001(缓存代理层)
 permalink: /archives/XcU7szXb
 categories:
-  - default
+  - tools
+  - docker
 tags:
   - navidrome
 ---
