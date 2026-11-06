@@ -5,7 +5,7 @@ draft: false
 featured: false
 summary: 记录本站切换到 Solitude 后的配置、文章样式、封面取色、Waline 评论、侧栏和 GitHub Pages 发布方式，方便后续维护。
 categories:
-  - Hugo
+  - website
 tags:
   - Solitude
   - Hugo

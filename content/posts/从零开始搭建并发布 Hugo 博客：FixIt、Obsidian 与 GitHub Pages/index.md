@@ -6,7 +6,7 @@ date: 2026-10-25T02:38:35+08:00
 featured_image: Pasted%20image%2020261025183615.png
 featured_image_preview: Pasted%20image%2020261025183615.png
 categories:
-  - blog
+  - website
 tags:
   - hugo
 ---
